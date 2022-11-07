@@ -1,6 +1,6 @@
 package estudodecaso;
 
-public class Aluno {
+public class Aluno extends Pessoa {
 
 	private Integer matricula;
 	private Integer falta;
@@ -30,7 +30,8 @@ public class Aluno {
 		this.notas = notas;
 	}
 	
-	public Integer mostrarNotas() {
+	public String mostrarNotas() {
+		return null;
 		
 	}
 

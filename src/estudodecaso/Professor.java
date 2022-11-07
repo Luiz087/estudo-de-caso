@@ -44,7 +44,7 @@ public class Professor extends Pessoa {
 	}
 
 	public void addFalta() {
-
+		
 	}
 
 	public void addConteudo() {
