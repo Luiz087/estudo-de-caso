@@ -1,17 +1,17 @@
-package estudodecaso;
+package modelo;
 
 public class Professor extends Pessoa {
 
-	private Integer siape;
+	private Long siape;
 	private String materias;
 	private String conteudo;
 	private String telefone;
 
-	public Integer getSiape() {
+	public Long getSiape() {
 		return siape;
 	}
 
-	public void setSiape(Integer siape) {
+	public void setSiape(Long siape) {
 		this.siape = siape;
 	}
 
@@ -58,5 +58,7 @@ public class Professor extends Pessoa {
 	public void addAulaSinc() {
 
 	}
+	
+	
 
 }

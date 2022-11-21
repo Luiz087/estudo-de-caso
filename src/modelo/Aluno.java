@@ -1,25 +1,16 @@
-package estudodecaso;
+package modelo;
 
 public class Aluno extends Pessoa {
 
-	private Integer matricula;
-	private Integer falta;
+	private Long matricula;
 	private Float notas;
 
-	public Integer getMatricula() {
+	public Long getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(Integer matricula) {
+	public void setMatricula(Long matricula) {
 		this.matricula = matricula;
-	}
-
-	public Integer getFalta() {
-		return falta;
-	}
-
-	public void setFalta(Integer falta) {
-		this.falta = falta;
 	}
 
 	public Float getNotas() {

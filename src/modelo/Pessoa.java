@@ -1,4 +1,4 @@
-package estudodecaso;
+package modelo;
 
 import java.time.LocalDate;
 
@@ -6,9 +6,8 @@ public class Pessoa {
 
 	private String nome;
 	private LocalDate dataDeNasci;
-	private String cpf;
-	private String senha;
 	private String email;
+	private Long cpf;
 
 	public String getNome() {
 		return nome;
@@ -26,20 +25,12 @@ public class Pessoa {
 		this.dataDeNasci = dataDeNasci;
 	}
 
-	public String getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setCpf(Long num) {
+		this.cpf = num;
 	}
 
 	public String getEmail() {
