@@ -6,9 +6,9 @@ public interface IAlunoDAO {
 	
 	public boolean inserir(Aluno p);
 	
-	public boolean alterar(Aluno p, Long siape);
+	public boolean alterar(Long matricula);
 	
-	public boolean excluir(Aluno p, Long siape);
+	public boolean excluir(Long matricula);
 	
 	public ArrayList<Aluno> listarAlunos();
 

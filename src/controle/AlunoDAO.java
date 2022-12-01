@@ -33,10 +33,10 @@ public class AlunoDAO implements IAlunoDAO {
 	}
 
 	@Override
-	public boolean alterar(Aluno p, Long matricula) {
+	public boolean alterar(Long matricula) {
 		for (Aluno aluno : tabelaAluno) {
 			if (aluno.getMatricula() == matricula) {
-				aluno.setNome(p.getNome());
+				aluno.setMatricula(aluno.getMatricula());
 				return true;
 			}
 		}
@@ -44,7 +44,7 @@ public class AlunoDAO implements IAlunoDAO {
 	}
 
 	@Override
-	public boolean excluir(Aluno p, Long matricula) {
+	public boolean excluir(Long matricula) {
 		for (Aluno aluno : tabelaAluno) {
 			if (aluno.getMatricula() == matricula) {
 				tabelaAluno.remove(aluno);

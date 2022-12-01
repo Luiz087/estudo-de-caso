@@ -38,27 +38,10 @@ public class Professor extends Pessoa {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
-	public void addNota() {
-
-	}
-
-	public void addFalta() {
-		
-	}
-
-	public void addConteudo() {
-
-	}
-
-	public void addProva() {
-
-	}
-
-	public void addAulaSinc() {
-
-	}
 	
-	
+	@Override
+	public String toString() {
+		return "Nome:" + super.getNome() + "\nSiape" + this.siape + "\nMatéria:" + this.materias + "\nConteúdo:" + this.conteudo;
+	}
 
 }

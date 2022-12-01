@@ -20,10 +20,10 @@ public class Aluno extends Pessoa {
 	public void setNotas(Float notas) {
 		this.notas = notas;
 	}
-	
-	public String mostrarNotas() {
-		return null;
-		
+
+	@Override
+	public String toString() {
+		return "Matricula:" + this.matricula + " - Notas:" + this.notas;
 	}
 
 }

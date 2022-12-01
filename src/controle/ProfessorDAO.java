@@ -2,6 +2,7 @@ package controle;
 
 import java.util.ArrayList;
 
+
 import modelo.IProfessorDAO;
 import modelo.Professor;
 
@@ -33,11 +34,11 @@ public class ProfessorDAO implements IProfessorDAO {
 	}
 
 	@Override
-	public boolean alterar(Professor p, Long siape) {
+	public boolean alterar(Long siape) {
 		for (Professor professor : tabelaProfessor) {
 
 			if (professor.getSiape() == siape) {
-				professor.setNome(p.getNome());
+				professor.setSiape(professor.getSiape());
 				return true;
 			}
 		}
@@ -45,7 +46,7 @@ public class ProfessorDAO implements IProfessorDAO {
 	}
 
 	@Override
-	public boolean excluir(Professor p, Long siape) {
+	public boolean excluir(Long siape) {
 		for (Professor professor : tabelaProfessor) {
 			if (professor.getSiape() == siape) {
 				tabelaProfessor.remove(professor);
