@@ -35,7 +35,6 @@ public class AlunoDAO implements IAlunoDAO {
 	@Override
 	public boolean alterar(Aluno p, Long matricula) {
 		for (Aluno aluno : tabelaAluno) {
-
 			if (aluno.getMatricula() == matricula) {
 				aluno.setNome(p.getNome());
 				return true;
