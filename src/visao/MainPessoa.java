@@ -40,7 +40,7 @@ public class MainPessoa {
 						System.out.println("nenhum aluno cadastrado");
 					} else {
 						for (Aluno alunoListar : bdAluno.listarAlunos()) {
-							System.out.println(aluno.toString());
+							System.out.println(alunoListar.toString());
 						}
 					}
 
@@ -129,8 +129,9 @@ public class MainPessoa {
 			case 2:
 				Long siape2 = null;
 				Professor professor = new Professor();
-				System.out.println(
-						"1-Listar Professor\n2-Alterar Professor\n3-Excluir Professor\n4-Incluir Professor\n5-Voltar");
+				String materia2 = null, conteudo2 = null, telefone2 = null;
+
+				System.out.println("1-Listar Professor\n2-Alterar Professor\n3-Excluir Professor\n4-Incluir Professor\n5-Voltar");
 				Integer contProfessor = Integer.valueOf(leitura.nextLine());
 				switch (contProfessor) {
 				case 1:
@@ -139,7 +140,7 @@ public class MainPessoa {
 						System.out.println("nenhum professor cadastrado");
 					} else {
 						for (Professor professorListar : bdProfessor.listarProfessores()) {
-							System.out.println(professor.toString());
+							System.out.println(professorListar.toString());
 						}
 					}
 
@@ -147,11 +148,19 @@ public class MainPessoa {
 				case 2:
 					System.out.println("Insira o siape do professor:");
 					siape2 = Long.valueOf(leitura.nextLine());
-					bdProfessor.alterar(siape2);
+					System.out.println("Matéria nova:");
+					materia2 = leitura.nextLine();
+					System.out.println("Telefone novo:");
+					telefone2 = leitura.nextLine();
+					System.out.println("Conteúdo novo:");
+					conteudo2 = leitura.nextLine();
+					bdProfessor.alterar(siape2, materia2, conteudo2, telefone2);
+					break;
 				case 3:
 					System.out.println("Insira o siape do professor:");
 					siape2 = Long.valueOf(leitura.nextLine());
 					bdProfessor.excluir(siape2);
+					break;
 				case 4:
 					// Lendo nome
 					System.out.println("Insira nome:");

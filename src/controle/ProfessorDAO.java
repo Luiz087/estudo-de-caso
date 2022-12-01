@@ -34,11 +34,13 @@ public class ProfessorDAO implements IProfessorDAO {
 	}
 
 	@Override
-	public boolean alterar(Long siape) {
+	public boolean alterar(Long siape, String materias, String conteudo, String telefone) {
 		for (Professor professor : tabelaProfessor) {
 
 			if (professor.getSiape() == siape) {
-				professor.setSiape(professor.getSiape());
+				professor.setMaterias(materias);
+				professor.setConteudo(conteudo);
+				professor.setTelefone(telefone);
 				return true;
 			}
 		}

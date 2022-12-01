@@ -6,7 +6,7 @@ public interface IProfessorDAO {
 	
 	public boolean inserir(Professor p);
 	
-	public boolean alterar(Long siape);
+	public boolean alterar(Long siape, String materias, String conteudo, String telefone);
 	
 	public boolean excluir(Long siape);
 	
