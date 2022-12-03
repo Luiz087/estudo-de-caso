@@ -1,13 +1,12 @@
 package visao;
 
 import java.time.LocalDate;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import controle.AlunoDAO;
 import controle.ProfessorDAO;
 import modelo.Aluno;
-import modelo.IProfessorDAO;
 import modelo.Professor;
 
 public class MainPessoa {
@@ -30,14 +29,17 @@ public class MainPessoa {
 			switch (contMenu) {
 			case 1:
 				Aluno aluno = new Aluno();
+				Integer qtdNotas = null;
+				Float notas = null;
 				Long matricula2 = null;
+				ArrayList<Float> notasAlterar = new ArrayList<>();
 				System.out.println("1-Listar Aluno\n2-Alterar Aluno\n3-Excluir Aluno\n4-Incluir Aluno\n5-Voltar");
 				Integer contAluno = Integer.valueOf(leitura.nextLine());
 				switch (contAluno) {
 				case 1: // Listar
 					bdAluno = AlunoDAO.getInstancia();
 					if (bdAluno.listarAlunos().size() == 0) {
-						System.out.println("nenhum aluno cadastrado");
+						System.out.println("Nenhum aluno cadastrado.");
 					} else {
 						for (Aluno alunoListar : bdAluno.listarAlunos()) {
 							System.out.println(alunoListar.toString());
@@ -49,13 +51,28 @@ public class MainPessoa {
 				case 2: // Alterar
 					System.out.println("Insira a matrícula do aluno:");
 					matricula2 = Long.valueOf(leitura.nextLine());
-					bdAluno.alterar(matricula2);
+					System.out.println("Insira nome:");
+					String nomeAlt = leitura.nextLine();
+					System.out.println("Insira novo email:");
+					String emailAlt = leitura.nextLine();
+					System.out.println("Quantas notas deseja inserir:");
+					qtdNotas = Integer.valueOf(leitura.nextLine());
+					for (int i = 0; i < qtdNotas; i++) {
+						System.out.println("Nota " + (i + 1) + ":");
+						Float notasAlt = Float.parseFloat(leitura.nextLine());
+						notasAlterar.add(notasAlt);
+
+					}
+					if (!nomeAlt.isEmpty() && !emailAlt.isEmpty() && !notasAlterar.isEmpty())
+						bdAluno.alterar(matricula2, nomeAlt, emailAlt, notasAlterar);
 					break;
+
 				case 3: // Excluir
 					System.out.println("Insira a matrícula do aluno:");
 					matricula2 = Long.valueOf(leitura.nextLine());
 					bdAluno.excluir(matricula2);
 					break;
+
 				case 4:
 					// Lendo nome
 					System.out.println("Insira nome:");
@@ -89,7 +106,7 @@ public class MainPessoa {
 						aluno.setDataDeNasci(data);
 					}
 
-					// Lendo Siape
+					// Lendo matricula
 					System.out.println("Insira matrícula:");
 					String matricula = leitura.nextLine();
 					if (!matricula.isEmpty()) {
@@ -103,17 +120,27 @@ public class MainPessoa {
 						aluno.setEmail(emailProfessor);
 					}
 
+					// Lendo notas
+					System.out.println("Insira a quantidade de notas do aluno:");
+					qtdNotas = Integer.valueOf(leitura.nextLine());
+					for (int i = 0; i < qtdNotas; i++) {
+						System.out.println("Insira a nota " + (i + 1) + ":");
+						notas = Float.parseFloat(leitura.nextLine());
+						aluno.inserirNotas(notas);
+					}
+
 					System.out.println("1- Exibir informações e concluir\n2- Apenas concluir o cadastro: ");
 					Integer contExibirAluno = Integer.valueOf(leitura.nextLine());
 
 					if (contExibirAluno == 1) {
 						// Exibicao dos atributos do objeto pessoa
-						System.out.println("- INFORMAÇÕES DO(A) PROFESSOR(A)");
+						System.out.println("\nINFORMAÇÕES DO(A) ALUNO(A)");
 						System.out.println("Nome: " + aluno.getNome());
 						System.out.println("Cpf: " + aluno.getCpf());
 						System.out.println("Data de nascimento: " + aluno.getDataDeNasci().toString());
 						System.out.println("E-mail: " + aluno.getEmail());
-						System.out.println("Matrícula:" + aluno.getMatricula().toString());
+						System.out.println("Matrícula: " + aluno.getMatricula().toString());
+						System.out.println("Notas: " + aluno.getNotas().toString());
 					}
 
 					// Insere pessoa no 'banco' fake
@@ -131,7 +158,8 @@ public class MainPessoa {
 				Professor professor = new Professor();
 				String materia2 = null, conteudo2 = null, telefone2 = null;
 
-				System.out.println("1-Listar Professor\n2-Alterar Professor\n3-Excluir Professor\n4-Incluir Professor\n5-Voltar");
+				System.out.println(
+						"1-Listar Professor\n2-Alterar Professor\n3-Excluir Professor\n4-Incluir Professor\n5-Voltar");
 				Integer contProfessor = Integer.valueOf(leitura.nextLine());
 				switch (contProfessor) {
 				case 1:

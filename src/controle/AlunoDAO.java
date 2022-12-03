@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import modelo.IAlunoDAO;
 import modelo.Aluno;
 
+
 public class AlunoDAO implements IAlunoDAO {
 
 	private static ArrayList<Aluno> tabelaAluno;
 	private static AlunoDAO instancia;
+	ArrayList<Float> notasAluno = new ArrayList<>();
 
 	private AlunoDAO() {
 	}
@@ -33,10 +35,12 @@ public class AlunoDAO implements IAlunoDAO {
 	}
 
 	@Override
-	public boolean alterar(Long matricula) {
+	public boolean alterar(Long matricula, String nome, String email, ArrayList<Float> notas) {
 		for (Aluno aluno : tabelaAluno) {
 			if (aluno.getMatricula() == matricula) {
-				aluno.setMatricula(aluno.getMatricula());
+				aluno.setNome(nome);
+				aluno.setEmail(email);
+				aluno.setNotas(notas);
 				return true;
 			}
 		}
