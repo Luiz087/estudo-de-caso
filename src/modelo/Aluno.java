@@ -29,7 +29,7 @@ public class Aluno extends Pessoa {
 	
 	@Override
 	public String toString() {
-		return "\nNome: " + super.getNome() + "\nMatricula: " + this.matricula + "\nNotas: " + this.notasAluno + "\n";
+	return "\nNome: " + super.getNome() + "\nMatricula: " + this.matricula + "\nNotas: " + this.notasAluno + "\nEmail: " + super.getEmail() + "\n";
 	}
 
 }

@@ -7,9 +7,9 @@ public interface IAlunoDAO {
 	
 	public boolean inserir(Aluno p);
 	
-	public boolean alterar(Long matricula, String nome, String email, ArrayList<Float> notas);
+	public void alterar();
 	
-	public boolean excluir(Long matricula);
+	public void excluir();
 	
 	public ArrayList<Aluno> listarAlunos();
 

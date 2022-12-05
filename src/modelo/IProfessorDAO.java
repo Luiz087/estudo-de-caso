@@ -6,9 +6,9 @@ public interface IProfessorDAO {
 	
 	public boolean inserir(Professor p);
 	
-	public boolean alterar(Long siape, String materias, String conteudo, String telefone);
+	public void alterar();
 	
-	public boolean excluir(Long siape);
+	public void excluir();
 	
 	public ArrayList<Professor> listarProfessores();
 

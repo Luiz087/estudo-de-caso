@@ -1,17 +1,22 @@
 package controle;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 
 import modelo.IAlunoDAO;
 import modelo.Aluno;
 
-
 public class AlunoDAO implements IAlunoDAO {
 
+	Scanner leitura = new Scanner(System.in);
 	private static ArrayList<Aluno> tabelaAluno;
 	private static AlunoDAO instancia;
 	ArrayList<Float> notasAluno = new ArrayList<>();
-
+	ArrayList<Float> notasAlterar = new ArrayList<>();
+	String numAluno = null;
+	Aluno listaA = null;
+	
 	private AlunoDAO() {
 	}
 
@@ -35,28 +40,54 @@ public class AlunoDAO implements IAlunoDAO {
 	}
 
 	@Override
-	public boolean alterar(Long matricula, String nome, String email, ArrayList<Float> notas) {
-		for (Aluno aluno : tabelaAluno) {
-			if (aluno.getMatricula() == matricula) {
-				aluno.setNome(nome);
-				aluno.setEmail(email);
-				aluno.setNotas(notas);
-				return true;
+	public void alterar() {
+		if(!tabelaAluno.isEmpty()) {
+			for (int i = 0; i < tabelaAluno.size(); i++) {
+				listaA = tabelaAluno.get(i);
+				System.out.println("[ " + i + " ] - " + listaA.getNome());
 			}
-		}
-		return false;
+			System.out.println("Qual aluno deseja alterar: ");
+			numAluno = leitura.nextLine();
+			
+			Aluno cont = tabelaAluno.get(Integer.valueOf(numAluno));
+			
+			System.out.println("Insira novo nome:");
+			String nomeAlt = leitura.nextLine();
+			System.out.println("Insira novo email:");
+			String emailAlt = leitura.nextLine();
+			System.out.println("Quantas notas deseja inserir:");
+			Integer qtdNotas = Integer.valueOf(leitura.nextLine());
+			for (int i = 0; i < qtdNotas; i++) {
+				System.out.println("Nota " + (i + 1) + ":");
+				Float notasAlt = Float.parseFloat(leitura.nextLine());
+				notasAlterar.add(notasAlt);
+
+			}
+			if (!nomeAlt.isEmpty() && !emailAlt.isEmpty() && !notasAlterar.isEmpty()) {
+				cont.setEmail(emailAlt);
+				cont.setNome(nomeAlt);
+				cont.setNotas(notasAlterar);
+			} else {
+				System.out.println("Algum dado não foi inserido corretamente.\nVoltando para a tela inicial...\n");
+			}
+		} else {
+			System.out.println("\nLista vazia.");
+		}	
 	}
 
 	@Override
-	public boolean excluir(Long matricula) {
-		for (Aluno aluno : tabelaAluno) {
-			if (aluno.getMatricula() == matricula) {
-				tabelaAluno.remove(aluno);
-				return true;
+	public void excluir() {
+		if(!tabelaAluno.isEmpty()) {
+			for (int i = 0; i < tabelaAluno.size(); i++) {
+				listaA = tabelaAluno.get(i);
+				System.out.println("[ " + i + " ] - " + listaA.getNome());
 			}
+			System.out.println("Qual aluno deseja excluir: ");
+			int excluirAluno = leitura.nextInt();
+			leitura.nextLine();
+			
+			tabelaAluno.remove(excluirAluno);
 		}
-
-		return false;
 	}
 
 	@Override

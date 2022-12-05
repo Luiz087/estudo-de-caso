@@ -31,8 +31,6 @@ public class MainPessoa {
 				Aluno aluno = new Aluno();
 				Integer qtdNotas = null;
 				Float notas = null;
-				Long matricula2 = null;
-				ArrayList<Float> notasAlterar = new ArrayList<>();
 				System.out.println("1-Listar Aluno\n2-Alterar Aluno\n3-Excluir Aluno\n4-Incluir Aluno\n5-Voltar");
 				Integer contAluno = Integer.valueOf(leitura.nextLine());
 				switch (contAluno) {
@@ -49,28 +47,13 @@ public class MainPessoa {
 					break;
 
 				case 2: // Alterar
-					System.out.println("Insira a matrícula do aluno:");
-					matricula2 = Long.valueOf(leitura.nextLine());
-					System.out.println("Insira nome:");
-					String nomeAlt = leitura.nextLine();
-					System.out.println("Insira novo email:");
-					String emailAlt = leitura.nextLine();
-					System.out.println("Quantas notas deseja inserir:");
-					qtdNotas = Integer.valueOf(leitura.nextLine());
-					for (int i = 0; i < qtdNotas; i++) {
-						System.out.println("Nota " + (i + 1) + ":");
-						Float notasAlt = Float.parseFloat(leitura.nextLine());
-						notasAlterar.add(notasAlt);
-
-					}
-					if (!nomeAlt.isEmpty() && !emailAlt.isEmpty() && !notasAlterar.isEmpty())
-						bdAluno.alterar(matricula2, nomeAlt, emailAlt, notasAlterar);
+					
+					bdAluno.alterar();
+					
 					break;
 
 				case 3: // Excluir
-					System.out.println("Insira a matrícula do aluno:");
-					matricula2 = Long.valueOf(leitura.nextLine());
-					bdAluno.excluir(matricula2);
+					bdAluno.excluir();
 					break;
 
 				case 4:
@@ -79,12 +62,24 @@ public class MainPessoa {
 					String nomeAluno = leitura.nextLine();
 					if (!nomeAluno.isEmpty()) {
 						aluno.setNome(nomeAluno);
+					} else {
+						while (nomeAluno.isEmpty()) {
+							System.out.println("Dado não inserido.\nInsira nome: ");
+							nomeAluno = leitura.nextLine();
+						}
+						aluno.setNome(nomeAluno);
 					}
 
 					// Lendo Cpf
 					System.out.println("Insira Cpf:");
 					String cpfAluno = leitura.nextLine();
 					if (!cpfAluno.isEmpty()) {
+						aluno.setCpf(Long.parseLong(cpfAluno));
+					} else {
+						while (cpfAluno.isEmpty()) {
+							System.out.println("Dado não iserido.\nInsira cpf: ");
+							cpfAluno = leitura.nextLine();
+						}
 						aluno.setCpf(Long.parseLong(cpfAluno));
 					}
 
@@ -111,13 +106,25 @@ public class MainPessoa {
 					String matricula = leitura.nextLine();
 					if (!matricula.isEmpty()) {
 						aluno.setMatricula(Long.parseLong(matricula));
+					} else {
+						while (matricula.isEmpty()) {
+							System.out.println("Dado não iserido.\nInsira matrícula: ");
+							matricula = leitura.nextLine();
+						}
+						aluno.setMatricula(Long.parseLong(matricula));
 					}
 
 					// Lendo email
 					System.out.println("Insira email:");
-					String emailProfessor = leitura.nextLine();
-					if (!emailProfessor.isEmpty()) {
-						aluno.setEmail(emailProfessor);
+					String emailAluno = leitura.nextLine();
+					if (!emailAluno.isEmpty()) {
+						aluno.setEmail(emailAluno);
+					} else {
+						while (emailAluno.isEmpty()) {
+							System.out.println("Dado não iserido.\nInsira email: ");
+							emailAluno = leitura.nextLine();
+						}
+						aluno.setEmail(emailAluno);
 					}
 
 					// Lendo notas
@@ -148,15 +155,13 @@ public class MainPessoa {
 					bdAluno.inserir(aluno);
 					break;
 				case 5:
-					System.out.println("Você escolheu voltar.[[");
+					System.out.println("Você escolheu voltar.");
 					break;
 
 				}
 				break;
 			case 2:
-				Long siape2 = null;
 				Professor professor = new Professor();
-				String materia2 = null, conteudo2 = null, telefone2 = null;
 
 				System.out.println(
 						"1-Listar Professor\n2-Alterar Professor\n3-Excluir Professor\n4-Incluir Professor\n5-Voltar");
@@ -165,7 +170,7 @@ public class MainPessoa {
 				case 1:
 					bdProfessor = ProfessorDAO.getInstancia();
 					if (bdProfessor.listarProfessores().size() == 0) {
-						System.out.println("nenhum professor cadastrado");
+						System.out.println("Nenhum professor cadastrado.");
 					} else {
 						for (Professor professorListar : bdProfessor.listarProfessores()) {
 							System.out.println(professorListar.toString());
@@ -174,33 +179,35 @@ public class MainPessoa {
 
 					break;
 				case 2:
-					System.out.println("Insira o siape do professor:");
-					siape2 = Long.valueOf(leitura.nextLine());
-					System.out.println("Matéria nova:");
-					materia2 = leitura.nextLine();
-					System.out.println("Telefone novo:");
-					telefone2 = leitura.nextLine();
-					System.out.println("Conteúdo novo:");
-					conteudo2 = leitura.nextLine();
-					bdProfessor.alterar(siape2, materia2, conteudo2, telefone2);
+					 bdProfessor.alterar();
 					break;
 				case 3:
-					System.out.println("Insira o siape do professor:");
-					siape2 = Long.valueOf(leitura.nextLine());
-					bdProfessor.excluir(siape2);
+					bdProfessor.excluir();
 					break;
 				case 4:
 					// Lendo nome
-					System.out.println("Insira nome:");
+					System.out.println("Insira nome: ");
 					String nome = leitura.nextLine();
 					if (!nome.isEmpty()) {
+						professor.setNome(nome);
+					} else {
+						while (nome.isEmpty()) {
+							System.out.println("Dado não inserido.\nInsira nome: ");
+							nome = leitura.nextLine();
+						}
 						professor.setNome(nome);
 					}
 
 					// Lendo Cpf
-					System.out.println("Insira Cpf:");
+					System.out.println("Insira Cpf: ");
 					String cpf = leitura.nextLine();
 					if (!cpf.isEmpty()) {
+						professor.setCpf(Long.parseLong(cpf));
+					} else {
+						while (cpf.isEmpty()) {
+							System.out.println("Dado não inserido.\nInsira Cpf: ");
+							cpf = leitura.nextLine();
+						}
 						professor.setCpf(Long.parseLong(cpf));
 					}
 
@@ -227,12 +234,24 @@ public class MainPessoa {
 					String siape = leitura.nextLine();
 					if (!siape.isEmpty()) {
 						professor.setSiape(Long.parseLong(siape));
+					} else {
+						while (siape.isEmpty()) {
+							System.out.println("Dado não inserido.\nInsira Siape: ");
+							siape = leitura.nextLine();
+						}
+						professor.setSiape(Long.parseLong(siape));
 					}
 
 					// Lendo email
-					System.out.println("Insira email:");
+					System.out.println("Insira email: ");
 					String email = leitura.nextLine();
 					if (!email.isEmpty()) {
+						professor.setEmail(email);
+					} else {
+						while (email.isEmpty()) {
+							System.out.println("Dado não inserido.\nInsira Email: ");
+							email = leitura.nextLine();
+						}
 						professor.setEmail(email);
 					}
 
@@ -241,19 +260,37 @@ public class MainPessoa {
 					String tele = leitura.nextLine();
 					if (!tele.isEmpty()) {
 						professor.setTelefone(tele);
+					} else {
+						while (tele.isEmpty()) {
+							System.out.println("Dado não inserido.\nInsira telefone: ");
+							tele = leitura.nextLine();
+						}
+						professor.setTelefone(tele);
 					}
 
 					// Lendo materias
-					System.out.println("Insira matérias (se houver mais de uma separar com 'e' ou ','):");
+					System.out.println("Insira matérias (se houver mais de uma separar com 'e' ou ','): ");
 					String materias = leitura.nextLine();
 					if (!materias.isEmpty()) {
+						professor.setMaterias(materias);
+					} else {
+						while (materias.isEmpty()) {
+							System.out.println("Dado não inserido.\nInsira materias: ");
+							materias = leitura.nextLine();
+						}
 						professor.setMaterias(materias);
 					}
 
 					// Lendo conteudos
-					System.out.println("Insira Conteúdo:");
+					System.out.println("Insira Conteúdo: ");
 					String conteudo = leitura.nextLine();
 					if (!conteudo.isEmpty()) {
+						professor.setConteudo(conteudo);
+					} else {
+						while (conteudo.isEmpty()) {
+							System.out.println("Dado não inserido.\nInsira conteúdo: ");
+							conteudo = leitura.nextLine();
+						}
 						professor.setConteudo(conteudo);
 					}
 
@@ -262,7 +299,7 @@ public class MainPessoa {
 
 					if (contExibirProfessor == 1) {
 						// Exibicao dos atributos do objeto pessoa
-						System.out.println("- INFORMAÇÕES DO(A) PROFESSOR(A)");
+						System.out.println("\nINFORMAÇÕES DO(A) PROFESSOR(A)");
 						System.out.println("Nome: " + professor.getNome());
 						System.out.println("Cpf: " + professor.getCpf());
 						System.out.println("Data de nascimento: " + professor.getDataDeNasci().toString());
@@ -281,7 +318,7 @@ public class MainPessoa {
 					System.out.println("Você escolheu voltar.");
 					break;
 				}
-
+				break;
 			case 3:
 				System.out.println("Você escolheu sair.\nObrigado e até logo!");
 				break;
