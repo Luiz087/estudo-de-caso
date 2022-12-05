@@ -7,9 +7,9 @@ public interface IAlunoDAO {
 	
 	public boolean inserir(Aluno p);
 	
-	public void alterar();
+	public boolean alterar();
 	
-	public void excluir();
+	public boolean excluir();
 	
 	public ArrayList<Aluno> listarAlunos();
 

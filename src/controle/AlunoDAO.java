@@ -40,7 +40,7 @@ public class AlunoDAO implements IAlunoDAO {
 	}
 
 	@Override
-	public void alterar() {
+	public boolean alterar() {
 		if(!tabelaAluno.isEmpty()) {
 			for (int i = 0; i < tabelaAluno.size(); i++) {
 				listaA = tabelaAluno.get(i);
@@ -70,13 +70,15 @@ public class AlunoDAO implements IAlunoDAO {
 			} else {
 				System.out.println("Algum dado não foi inserido corretamente.\nVoltando para a tela inicial...\n");
 			}
+			return true;
 		} else {
 			System.out.println("\nLista vazia.");
+			return false;
 		}	
 	}
 
 	@Override
-	public void excluir() {
+	public boolean excluir() {
 		if(!tabelaAluno.isEmpty()) {
 			for (int i = 0; i < tabelaAluno.size(); i++) {
 				listaA = tabelaAluno.get(i);
@@ -88,6 +90,7 @@ public class AlunoDAO implements IAlunoDAO {
 			
 			tabelaAluno.remove(excluirAluno);
 		}
+		return true;
 	}
 
 	@Override

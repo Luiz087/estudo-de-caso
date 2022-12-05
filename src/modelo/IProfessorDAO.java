@@ -6,9 +6,9 @@ public interface IProfessorDAO {
 	
 	public boolean inserir(Professor p);
 	
-	public void alterar();
+	public boolean alterar();
 	
-	public void excluir();
+	public boolean excluir();
 	
 	public ArrayList<Professor> listarProfessores();
 

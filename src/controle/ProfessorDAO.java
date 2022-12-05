@@ -38,7 +38,7 @@ public class ProfessorDAO implements IProfessorDAO {
 	}
 
 	@Override
-	public void alterar() {
+	public boolean alterar() {
 		if(!tabelaProfessor.isEmpty()) {
 			for (int i = 0; i < tabelaProfessor.size(); i++) {
 				listaP = tabelaProfessor.get(i);
@@ -69,13 +69,16 @@ public class ProfessorDAO implements IProfessorDAO {
 			} else {
 				System.out.println("Algum dado não foi inserido corretamente.\nVoltando para a tela inicial...\n");
 			}
+			return true;
 		} else {
 			System.out.println("\nLista vazia.");
+			return false;
 		}
+		
 	}
 
 	@Override
-	public void excluir() {
+	public boolean excluir() {
 		if(!tabelaProfessor.isEmpty()) {
 			for (int i = 0; i < tabelaProfessor.size(); i++) {
 				listaP = tabelaProfessor.get(i);
@@ -87,6 +90,7 @@ public class ProfessorDAO implements IProfessorDAO {
 			
 			tabelaProfessor.remove(numProfessor);
 		}
+		return true;
 
 	}
 
